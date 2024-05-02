@@ -10,7 +10,10 @@ import SwiftUI
 
 struct QuestionsPageView: View {
     
-    @State private var currentQuestionIndex = 0 // Initialize currentQuestionIndex
+    @State private var currentQuestionIndex = 0
+    @State private var selectedOption: String = ""
+    @State private var correct: Bool = false
+    @State private var score: Int =  0
     
     var questionsArray: [Question] = [
         Question(questions: "A bleach and _?", options: ["Perm", "Buzz", "Tone", "Blonde"], correctAnswer: "Tone"),
@@ -49,9 +52,14 @@ struct QuestionsPageView: View {
                                     .background(Color.white)
                                     .foregroundColor(.black)
                                     .font(.system(size: 25))
-
                             }
                         }
+                        Text("Score: \(score)")
+                            .frame(width: 120, height: 45)
+                            .font(.system(size: 25))
+                            .foregroundColor(.black)
+                            .background(Color.white)
+                            .padding()
                     }
                 }
             }
@@ -59,8 +67,11 @@ struct QuestionsPageView: View {
     }
     
     func checkAnswer(selectedOption: String) {
-        // Implement your answer checking logic here
-        // You may want to compare selectedOption with questionsArray[currentQuestionIndex].correctAnswer
+        if selectedOption == questionsArray[currentQuestionIndex].correctAnswer{
+            correct = true
+            score += 1
+            currentQuestionIndex += 1
+        }
     }
 }
 
