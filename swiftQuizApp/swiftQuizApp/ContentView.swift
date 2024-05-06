@@ -19,7 +19,7 @@ struct ContentView: View {
                     Text("Brainrot Quiz")
                         .foregroundColor(.white)
                         .font(.system(size: 48))
-                        .frame(width: 310, height: 90)
+                        .frame(width: 320, height: 90)
                         .background(Color.red)
                         .cornerRadius(15.0)
                         .padding()

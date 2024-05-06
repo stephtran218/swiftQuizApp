@@ -22,6 +22,7 @@
 		33DF26A62BDFF2D200FDF67D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DF26A12BDFF2D200FDF67D /* ContentView.swift */; };
 		33DF26A82BDFF94F00FDF67D /* QuestionsPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DF26A72BDFF94F00FDF67D /* QuestionsPageView.swift */; };
 		33DF26AA2BE00F0300FDF67D /* QuestionStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DF26A92BE00F0300FDF67D /* QuestionStruct.swift */; };
+		33FBF2B92BE9350B00390672 /* FinalPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FBF2B82BE9350B00390672 /* FinalPageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		33DF26A12BDFF2D200FDF67D /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		33DF26A72BDFF94F00FDF67D /* QuestionsPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsPageView.swift; sourceTree = "<group>"; };
 		33DF26A92BE00F0300FDF67D /* QuestionStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionStruct.swift; sourceTree = "<group>"; };
+		33FBF2B82BE9350B00390672 /* FinalPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				330AD9052BDAC8F9003E7848 /* swiftQuizAppApp.swift */,
 				330AD9072BDAC8F9003E7848 /* ContentView.swift */,
 				33DF26A72BDFF94F00FDF67D /* QuestionsPageView.swift */,
+				33FBF2B82BE9350B00390672 /* FinalPageView.swift */,
 				33DF26A92BE00F0300FDF67D /* QuestionStruct.swift */,
 				33DF26992BDFF21000FDF67D /* brainrotQuiz.png */,
 				33DF269B2BDFF2D200FDF67D /* swiftQuizApp */,
@@ -303,6 +306,7 @@
 			files = (
 				33DF26AA2BE00F0300FDF67D /* QuestionStruct.swift in Sources */,
 				330AD9082BDAC8F9003E7848 /* ContentView.swift in Sources */,
+				33FBF2B92BE9350B00390672 /* FinalPageView.swift in Sources */,
 				33DF26A42BDFF2D200FDF67D /* swiftQuizAppApp.swift in Sources */,
 				33DF26A62BDFF2D200FDF67D /* ContentView.swift in Sources */,
 				330AD9062BDAC8F9003E7848 /* swiftQuizAppApp.swift in Sources */,

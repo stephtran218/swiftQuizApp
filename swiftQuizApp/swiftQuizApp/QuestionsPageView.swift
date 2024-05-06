@@ -13,7 +13,7 @@ struct QuestionsPageView: View {
     @State private var currentQuestionIndex = 0
     @State private var selectedOption: String = ""
     @State private var correct: Bool = false
-    @State private var score: Int =  0
+    @Binding var score: Int
     
     var questionsArray: [Question] = [
         Question(questions: "A bleach and _?", options: ["Perm", "Buzz", "Tone", "Blonde"], correctAnswer: "Tone"),
@@ -27,39 +27,51 @@ struct QuestionsPageView: View {
         Question(questions: "Who is Flashback Mary?", options: ["Wendy Williams", "Trisha Paytas", "James Charles", "Tana Mongeau"], correctAnswer: "James Charles"),
         Question(questions: "Who said “Then you should probably eat.”" , options: ["Olivia Rodrigo", "Selena Gomez", "Shailene Woodley", "Debby Ryan"], correctAnswer: "Shailene Woodley")
     ]
-
+    
     var body: some View {
-        ZStack{
-            Image("brainrotQuiz")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
-            VStack{
-                if currentQuestionIndex < questionsArray.count {
-                    VStack {
-                        Text(questionsArray[currentQuestionIndex].questions)
-                            .foregroundColor(.black)
-                            .frame(width: 260, height: 90)
-                            .background(Color.white)
-                            .font(.system(size: 25))
-                            .padding(.bottom,30)
-                        ForEach(questionsArray[currentQuestionIndex].options.indices, id: \.self) { j in
-                            Button(action: {
-                                checkAnswer(selectedOption: questionsArray[currentQuestionIndex].options[j])
-                            }) {
-                                Text(questionsArray[currentQuestionIndex].options[j])
-                                    .frame(width: 260, height: 80)
-                                    .background(Color.white)
-                                    .foregroundColor(.black)
-                                    .font(.system(size: 25))
+        NavigationView{
+            ZStack{
+                Image("brainrotQuiz")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+                VStack{
+                    Text("Score: \(score)")
+                        .frame(width: 120, height: 45)
+                        .font(.system(size: 25))
+                        .foregroundColor(.black)
+                        .background(Color.white)
+                        .padding()
+                    if currentQuestionIndex < questionsArray.count {
+                        VStack {
+                            Text(questionsArray[currentQuestionIndex].questions)
+                                .foregroundColor(.black)
+                                .frame(width: 270, height: 120)
+                                .padding(.horizontal, 10)
+                                .background(Color.white)
+                                .font(.system(size: 25))
+                                .padding(.bottom,30)
+                            ForEach(questionsArray[currentQuestionIndex].options.indices, id: \.self) { j in
+                                Button(action: {
+                                    checkAnswer(selectedOption: questionsArray[currentQuestionIndex].options[j])
+                                }) {
+                                    Text(questionsArray[currentQuestionIndex].options[j])
+                                        .frame(width: 260, height: 80)
+                                        .background(Color.white)
+                                        .foregroundColor(.black)
+                                        .font(.system(size: 25))
+                                }
                             }
+                            NavigationLink(destination: FinalPageView(score: $score), label: {
+                                Text("Begin")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 30))
+                                    .frame(width: 120, height: 65)
+                                    .background(Color.red)
+                                    .cornerRadius(15.0)
+                                    .padding(25)
+                            })
                         }
-                        Text("Score: \(score)")
-                            .frame(width: 120, height: 45)
-                            .font(.system(size: 25))
-                            .foregroundColor(.black)
-                            .background(Color.white)
-                            .padding()
                     }
                 }
             }
