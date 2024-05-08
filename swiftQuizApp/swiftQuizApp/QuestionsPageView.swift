@@ -13,13 +13,14 @@ struct QuestionsPageView: View {
     @State private var currentQuestionIndex = 0
     @State private var selectedOption: String = ""
     @State private var correct: Bool = false
-    @Binding var score: Int
+    @State var currentScore: Int = 0
+    @State private var quizCompleted: Bool = false
     
     var questionsArray: [Question] = [
         Question(questions: "A bleach and _?", options: ["Perm", "Buzz", "Tone", "Blonde"], correctAnswer: "Tone"),
         Question(questions: "Finish the phrase. “The Nile is a river in Egypt..”", options: ["YOUR HUSBAND IS GAY", "DO A SOLO", "Oh?", "All the above"], correctAnswer: "YOUR HUSBAND IS GAY"),
         Question(questions: "Who says “Nina. Nina. NINA!”", options: ["Fish girl", "Trisha Paytas", "Austin McBroom", "Debby Ryan"], correctAnswer: "Fish girl"),
-        Question(questions: "Who says “I was supposed to be in the video”", options: ["Kendall Vertes", "Madison Beer", "Debby Ryan", "Jojo Siwa"], correctAnswer: "Madison Beer"),
+        Question(questions: "Who said “I was supposed to be in the video”", options: ["Kendall Vertes", "Madison Beer", "Debby Ryan", "Jojo Siwa"], correctAnswer: "Madison Beer"),
         Question(questions: "What song was played during the TikTok Rizz Party?", options: ["CARNIVAL", "FEIN!", "SICKO MODE", "MELTDOWN (feat. Drake)"], correctAnswer: "CARNIVAL"),
         Question(questions: "Who said “HELLO DUBAI”", options: ["Beyonce", "Rihanna", "Jennifer Lopez", "Kim Kardashian"], correctAnswer: "Rihanna"),
         Question(questions: "Who said “I finna be in the pit.”", options: ["Charli D'amelio", "Trisha Paytas", "Tana Mongeau", "Taraswrld"], correctAnswer: "Taraswrld"),
@@ -29,20 +30,20 @@ struct QuestionsPageView: View {
     ]
     
     var body: some View {
-        NavigationView{
-            ZStack{
+        NavigationView {
+            ZStack {
                 Image("brainrotQuiz")
                     .resizable()
                     .scaledToFill()
                     .ignoresSafeArea()
-                VStack{
-                    Text("Score: \(score)")
+                VStack {
+                    Text("Score: \(currentScore)")
                         .frame(width: 120, height: 45)
                         .font(.system(size: 25))
                         .foregroundColor(.black)
                         .background(Color.white)
                         .padding()
-                    if currentQuestionIndex < questionsArray.count {
+                    if currentQuestionIndex < questionsArray.count && !quizCompleted {
                         VStack {
                             Text(questionsArray[currentQuestionIndex].questions)
                                 .foregroundColor(.black)
@@ -62,15 +63,16 @@ struct QuestionsPageView: View {
                                         .font(.system(size: 25))
                                 }
                             }
-                            NavigationLink(destination: FinalPageView(score: $score), label: {
-                                Text("Begin")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 30))
-                                    .frame(width: 120, height: 65)
-                                    .background(Color.red)
-                                    .cornerRadius(15.0)
-                                    .padding(25)
-                            })
+                        }
+                    } else if quizCompleted {
+                        NavigationLink(destination: FinalPageView(finalScore: currentScore)) {
+                            Text("Next")
+                                .foregroundColor(.white)
+                                .font(.system(size: 30))
+                                .frame(width: 220, height: 65)
+                                .background(Color.red)
+                                .cornerRadius(15.0)
+                                .padding(25)
                         }
                     }
                 }
@@ -79,10 +81,13 @@ struct QuestionsPageView: View {
     }
     
     func checkAnswer(selectedOption: String) {
-        if selectedOption == questionsArray[currentQuestionIndex].correctAnswer{
+        if selectedOption == questionsArray[currentQuestionIndex].correctAnswer {
             correct = true
-            score += 1
-            currentQuestionIndex += 1
+            currentScore += 1
+        }
+        currentQuestionIndex += 1
+        if currentQuestionIndex == questionsArray.count {
+            quizCompleted = true
         }
     }
 }

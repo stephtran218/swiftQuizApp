@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FinalPageView: View {
     
-    @Binding var score: Int
+    @State var finalScore: Int
     
     var body: some View {
         ZStack{
@@ -19,7 +19,19 @@ struct FinalPageView: View {
                 .ignoresSafeArea()
             VStack{
                 Text("Great Job")
-                Text("You got \(score)")
+                    .foregroundColor(.white)
+                    .font(.system(size: 30))
+                    .frame(width: 220, height: 65)
+                    .background(Color.red)
+                    .cornerRadius(15.0)
+                    .padding(25)
+                Text("You got \(finalScore)")
+                    .foregroundColor(.white)
+                    .font(.system(size: 30))
+                    .frame(width: 190, height: 65)
+                    .background(Color.red)
+                    .cornerRadius(15.0)
+                    .padding(25)
             }
         }
 
@@ -27,5 +39,5 @@ struct FinalPageView: View {
 }
 
 #Preview {
-    FinalPageView(score: $score)
+    FinalPageView(finalScore: 0)
 }
